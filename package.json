@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "tsc",
     "tsc": "tsc",
     "serverTS": "ts-node-dev --respawn --transpileOnly ./dev/app.ts",
     "server": "tsc && node ./app.js"
