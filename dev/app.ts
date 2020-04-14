@@ -9,9 +9,9 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', express.static('public'));
-app.listen(process.env.PORT, () => { console.log(`Server is on, port ${port}.`) });
+app.listen(port, () => { console.log(`Server is on, port ${port}.`) });
 
-app.get('*', (req: any, res: any) => {
+app.get('/', (req: any, res: any) => {
     res.status(200).json({ ass: 'ass' })
 });
 
