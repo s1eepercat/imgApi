@@ -11,6 +11,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', express.static('public'));
 app.listen(3000, () => { console.log(`Server is on, port ${port}.`) });
 
-app.get('/', (req: any, res: any) => {
+app.get('*', (req: any, res: any) => {
     res.status(200).json({ ass: 'ass' })
 });
