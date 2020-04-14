@@ -7,7 +7,7 @@
     "start": "node ./build/app.js",
     "tsc": "tsc",
     "serverTS": "ts-node-dev --respawn --transpileOnly ./dev/app.ts",
-    "server": "tsc && node ./app.js"
+    "server": "tsc && node ./build/app.js"
   },
   "author": "",
   "license": "ISC",

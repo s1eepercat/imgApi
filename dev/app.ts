@@ -11,8 +11,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', express.static('public'));
 app.listen(port, () => { console.log(`Server is on, port ${port}.`) });
 
-app.get('/', (req: any, res: any) => {
-    res.status(200).json({ ass: 'ass' })
+app.get('/test', (req: any, res: any) => {
+    res.status(200).json({ test: 'test' })
 });
 
 // var express = require('express')

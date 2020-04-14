@@ -10,8 +10,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', express.static('public'));
 app.listen(port, function () { console.log("Server is on, port " + port + "."); });
-app.get('/', function (req, res) {
-    res.status(200).json({ ass: 'ass' });
+app.get('/test', function (req, res) {
+    res.status(200).json({ test: 'test' });
 });
 // var express = require('express')
 // var path = require('path')
