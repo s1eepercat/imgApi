@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <form>
+        <label for="fname">Login:</label><br>
+        <input type="text"><br>
+        <label for="lname">Password:</label><br>
+        <input type="text"><br><br>
+    </form>
+    <button onclick="formSubmit()">SEND</button>
+
+    <script>
+        const inputs = document.querySelectorAll('input');
+
+        function formSubmit() {
+            const object = {
+                username: inputs[0].value,
+                password: inputs[1].value
+            };
+            fetch('/images', {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: 'POST',
+                body: JSON.stringify(object)
+            })
+                .then(response => response.json())
+                .catch(error => console.error('Error:', error))
+                .then(response => console.log('Success:', JSON.stringify(response)))
+        }
+    </script>
+
+</body>
+
+</html>
