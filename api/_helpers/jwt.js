@@ -8,8 +8,10 @@ function jwt() {
     return expressJwt({ secret }).unless({
         path: [
             '/',
-            '/login.html', //login form
-            '/images' //api calls
+            '/login.html',
+            '/admin.html',
+
+            '/login' //api calls
         ]
     });
 }

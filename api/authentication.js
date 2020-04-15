@@ -2,9 +2,16 @@ const jwt = require('jsonwebtoken');
 const config = require('../config.json');
 const express = require('express');
 const router = express.Router();
+let accessToken;
+const adminUsername = 'test';
+const adminPassword = 'test';
 
 // admin routes
+// router.get('/',) ??? redirect to login
+
 router.post('/', login);
+
+// router.get('/images', ) imagery manipulation
 
 function login(req, res, next) {
     authenticate(req.body)
@@ -13,27 +20,12 @@ function login(req, res, next) {
 }
 
 async function authenticate({ username, password }) {
-    const isLoggedIn = (username === 'test' && password === 'test');
-    if (isLoggedIn) {
-        const token = jwt.sign('admin_aleksej', config.secret);
+    if (username === adminUsername && password === adminPassword) {
+        accessToken = jwt.sign('admin_aleksej', config.secret);
         return {
-            token
+            accessToken
         };
     }
 }
 
 module.exports = router;
-
-
-
-
-
-// const data = require('./data.js');
-
-// const search = (id) => {
-//     itemArr.find(object => object.id === Number(id))
-// };
-
-// module.exports = {
-//     search: search,
-// }
