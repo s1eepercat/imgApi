@@ -13,13 +13,13 @@ const authenticate = async ({ username, password }) => {
 
 const login = (req, res, next) => {
     authenticate(req.body)
-        .then(token => token ? res.json(token) : res.status(400).json({ message: 'Username or password is incorrect' }))
+        .then(token => token ? res.json(token) : res.status(400).json('Username or password is incorrect'))
         .catch(err => next(err));
 }
 
 const validateToken = function (req, res, next) {
-    const token = req.headers["x-access-token"] || req.headers["authorization"];
-    if (!token) return res.status(401).send("Access denied. No token provided.");
+    const token = req.headers["x-access-token"];
+    if (!token) return res.status(401).json("Access denied. No token provided.");
 
     try {
         const decoded = jwt.verify(token, config.secret);

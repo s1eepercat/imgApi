@@ -1,0 +1,13 @@
+'/api/login': 
+    post:  {username: test, password: test},
+
+'/api/image':
+    get:  {?id=1}
+    post: x-access-token; {id: 1; path: ''}
+    put: x-access-token; {id: 1, path: ''}
+
+'/api/collection':
+    get
+    post: x-access-token; {id: 1; path: ''}
+    put: x-access-token; {id: 1; path: ''}
+    delete: x-access-token; {id: 1; path: ''}
