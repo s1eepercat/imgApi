@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const config = require('../../config.json');
+const errors = require('./errors')
 const adminUsername = 'test';
 const adminPassword = 'test';
 let access_token;
@@ -13,20 +14,22 @@ const authenticate = async ({ username, password }) => {
 
 const login = (req, res, next) => {
     authenticate(req.body)
-        .then(token => token ? res.json(token) : res.status(400).json('Username or password is incorrect'))
-        .catch(err => next(err));
+        .then(token => {
+            token ? res.status(200).json(token) : next(errors.newError('Username or password is incorrect / Bad Request', 400));
+        })
 }
 
-const validateToken = function (req, res, next) {
-    const token = req.headers["x-access-token"];
-    if (!token) return res.status(401).json("Access denied. No token provided.");
-
-    try {
-        const decoded = jwt.verify(token, config.secret);
-        req.user = decoded;
-        next();
-    } catch (ex) {
-        res.status(400).send("Invalid token.");
+const validateToken = (req, res, next) => {
+    const token = req.headers['x-access-token'];
+    if (token) {
+        try {
+            jwt.verify(token, config.secret);
+            next();
+        } catch (error) {
+            next(errors.newError('Invalid token / Unauthorized', 401));
+        }
+    } else {
+        next(errors.newError('Access denied. No token provided / Unauthorized', 401));
     }
 };
 
