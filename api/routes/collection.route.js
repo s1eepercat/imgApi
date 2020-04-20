@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', auth.validateToken, uploader('collection').single('collection_image'), (req, res) => {
-    data.postImages('./api/data/collection.json', req.body.id, req.file.filename, `/collection/${req.file.filename}`)
+    data.postImages('./api/data/collection.json', req.body.id, `/collection/${req.file.filename}`)
         .catch(err => next(err))
         .then(data => res.status(200).json(data));
 });

@@ -7,13 +7,12 @@ async function getImages(file, id = null) {
             if (err) reject(errors.newError('Something went wrong / Internal Server Error', 500));
             collection = JSON.parse(data);
             if (id) {
-                resolve(collection[id].path);
+                resolve(collection[id]);
             } else {
                 pathsArray = [];
-                for (let [key, value] of Object.entries(collection)) {
-                    if (value.path) {
-                        pathsArray.push(value.path);
-                    }
+                for (let id in collection) {
+                    collection[id];
+                    pathsArray.push(collection[id]);
                 }
                 resolve(pathsArray);
             }
@@ -22,18 +21,12 @@ async function getImages(file, id = null) {
     return await promise;
 }
 
-async function postImages(file, id, name, path) {
+async function postImages(file, id, path) {
     let promise = new Promise((resolve, reject) => {
         fs.readFile(file, (err, data) => {
             if (err) reject(errors.newError('Something went wrong / Internal Server Error', 500));
             collection = JSON.parse(data);
-            let item = {
-                id: id,
-                name: name,
-                path: path
-            }
-            collection[id] = item;
-            collection.count++;
+            collection[id] = path; //VALIDATE JSON, IF EXISTS AND NOT EMPTY
             fs.writeFile(file, JSON.stringify(collection), (err) => {
                 if (err) reject(errors.newError('Something went wrong / Internal Server Error', 500));
                 console.log('Data written to file');
