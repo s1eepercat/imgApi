@@ -8,6 +8,6 @@
 
 '/api/collection':
     get  ---array of paths
-    post: x-access-token; {id: ELEMENTREF; name: '1.jpg'} ---collection JSON
-    put: x-access-token; {id: 1; path: ''} ---collection JSON
-    delete: x-access-token; {id: 1; path: ''} ---collection JSON
+    post: x-access-token; {id: ELEMENTREF;} ---collection JSON
+    put: x-access-token; {id: ELEMENTREF;} ---collection JSON
+    delete: x-access-token; {id: ELEMENTREF;} ---collection JSON

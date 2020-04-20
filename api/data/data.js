@@ -1,7 +1,6 @@
 const fs = require('fs');
 const errors = require('./../middleware/errors')
 
-//Get
 async function getImages(file, id = null) {
     let promise = new Promise((resolve, reject) => {
         fs.readFile(file, (err, data) => {
@@ -23,7 +22,6 @@ async function getImages(file, id = null) {
     return await promise;
 }
 
-//Post
 async function postImages(file, id, name, path) {
     let promise = new Promise((resolve, reject) => {
         fs.readFile(file, (err, data) => {
@@ -47,9 +45,7 @@ async function postImages(file, id, name, path) {
     return await promise;
 }
 
-
-
-//Update
+// async function updateImages(file, id, )
 
 //Delete
 
