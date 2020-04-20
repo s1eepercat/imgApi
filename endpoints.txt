@@ -2,12 +2,12 @@
     post:  {username: test, password: test},
 
 '/api/image':
-    get:  {?id=1}
+    get:  {?id=1} ---path
     post: x-access-token; {id: 1; path: ''}
     put: x-access-token; {id: 1, path: ''}
 
 '/api/collection':
-    get
-    post: x-access-token; {id: 1; path: ''}
-    put: x-access-token; {id: 1; path: ''}
-    delete: x-access-token; {id: 1; path: ''}
+    get  ---array of paths
+    post: x-access-token; {id: ELEMENTREF; name: '1.jpg'} ---collection JSON
+    put: x-access-token; {id: 1; path: ''} ---collection JSON
+    delete: x-access-token; {id: 1; path: ''} ---collection JSON

@@ -1,1 +1,65 @@
 <!-- Redirect to login html if no token in cookie -->
+
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <!-- <form enctype="multipart/form-data">
+        <label for="fname">name:</label><br>
+        <input type="text"><br>
+        <label for="fname">id:</label><br>
+        <input type="text"><br>
+        <input type="file" name="file" multiple />
+        <input type="submit" value="Upload File" name="submit" />
+    </form> -->
+
+    <form action="/api/collection" enctype="multipart/form-data" method="post">
+        <div class="form-group">
+            <input type="file" name="collection_image">
+            <input type="text" placeholder="Image ID reference" name="id">
+            <input type="submit" value="Upload image to collection!" class="btn btn-default">
+        </div>
+    </form>
+
+    <!-- <button onclick="formSubmit()">SEND</button> -->
+
+    <!-- <script>
+        const form = document.querySelector('form')
+        const inputs = document.querySelectorAll('input');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+
+            const files = document.querySelector('[type=file]').files;
+            const formData = new FormData();
+
+            const object = {
+                username: inputs[0].value,
+                password: inputs[1].value
+            };
+
+            for (let i = 0; i < files.length; i++) {
+                let file = files[i]
+
+                formData.append('file', file)
+            }
+
+            formData.append('data', JSON.stringify(object));
+
+            fetch('/api/collection', {
+                headers: {
+                    // 'Content-Type': 'multipart/form-data',
+                    'x-access-token': 'eyJhbGciOiJIUzI1NiJ9.YWRtaW5fYWxla3Nlag._lJl2OS0gTAP1kQ5sCiVyn-m_niFtSfx3TNujNnWoEM'
+                },
+                method: 'POST',
+                body: formData,
+            }).then(response => {
+                console.log(response);
+            })
+        }) -->
+    </script>
+
+</body>
+
+</html>

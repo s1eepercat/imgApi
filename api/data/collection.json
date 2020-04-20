@@ -1,8 +1,8 @@
 {
-    "1": {
-        "id": 1,
-        "name": "1.png",
-        "path": "/public/collection/1.png"
-    },
-    "count": 1
+    "count": 1,
+    "TESTIMGELEMENT": {
+        "id": "TESTIMGELEMENT",
+        "name": "1587386833082.jpg",
+        "path": "/public/collection/1587386833082.jpg"
+    }
 }
