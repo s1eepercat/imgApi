@@ -7,7 +7,12 @@
     put: x-access-token; {id: ELEMENTREF;} ---collection JSON
 
 '/api/collection':
-    get  ---array of URLS
-    post: x-access-token; {id: ELEMENTREF;} ---collection JSON
-    put: x-access-token; {id: ELEMENTREF;} ---collection JSON
-    delete: x-access-token; {id: ELEMENTREF;} ---collection JSON
+    get                                                 ---array of URLS            <<<<JSON FORMAT>>>>
+    post: x-access-token; {id: ELEMENTREF; img FILE}    ---json object with URLS    <<<<MULTIFORM DATA>>>>
+    put: x-access-token; {id: ELEMENTREF; img FILE}     ---json object with URLS    <<<<MULTIFORM DATA>>>>
+    delete: x-access-token; {id: ELEMENTREF;}           ---json object with URLS    <<<<JSON FORMAT>>>>
+
+
+    //FRONT SHOULD SERVE ONLY UNIQUE IDS!!!
+
+    //HASH PASSWORD WITH BCRYPT

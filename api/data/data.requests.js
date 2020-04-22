@@ -1,13 +1,10 @@
 const fs = require('fs');
 const errors = require('../middleware/errors');
-const dataCache = require('./data.cache');
-let COLLECTION = dataCache.cacheCollection();
-let IMAGE = dataCache.cacheImage();
 
-async function getImages(file, id = null) {
+const getImages = async (file, id = null) => {
     let promise = new Promise((resolve, reject) => {
         fs.readFile(file, (err, data) => {
-            if (err) reject(errors.newError('Something went wrong / Internal Server Error', 500));
+            if (err) reject(errors.newError('Reading failed / Internal Server Error', 500));
             collection = JSON.parse(data);
             if (id) {
                 resolve(collection[id]);
@@ -24,14 +21,14 @@ async function getImages(file, id = null) {
     return await promise;
 }
 
-async function postImages(file, id, path) {
+const postImages = async (file, id, path) => {
     let promise = new Promise((resolve, reject) => {
         fs.readFile(file, (err, data) => {
-            if (err) reject(errors.newError('Something went wrong / Internal Server Error', 500));
+            if (err) reject(errors.newError('Reading failed / Internal Server Error', 500));
             collection = JSON.parse(data);
             collection[id] = path;
             fs.writeFile(file, JSON.stringify(collection), (err) => {
-                if (err) reject(errors.newError('Something went wrong / Internal Server Error', 500));
+                if (err) reject(errors.newError('Writing failed / Internal Server Error', 500));
             });
             resolve(collection);
         });
@@ -39,4 +36,42 @@ async function postImages(file, id, path) {
     return await promise;
 }
 
-module.exports = { getImages, postImages };
+const putImages = async (file, id, path) => {
+    let promise = new Promise((resolve, reject) => {
+        fs.readFile(file, (err, data) => {
+            if (err) reject(errors.newError('Reading failed / Internal Server Error', 500));
+            collection = JSON.parse(data);
+            const lastPath = collection[id];
+            fs.unlink('./public' + lastPath, (err) => {
+                if (err) reject(errors.newError('Deleting failed / Internal Server Error', 500));
+            })
+            collection[id] = path;
+            fs.writeFile(file, JSON.stringify(collection), (err) => {
+                if (err) reject(errors.newError('Writing failed / Internal Server Error', 500));
+            });
+            resolve(collection);
+        });
+    });
+    return await promise;
+}
+
+const deleteImages = async (file, id) => {
+    let promise = new Promise((resolve, reject) => {
+        fs.readFile(file, (err, data) => {
+            if (err) reject(errors.newError('Reading failed / Internal Server Error', 500));
+            collection = JSON.parse(data);
+            const lastPath = collection[id];
+            fs.unlink('./public' + lastPath, (err) => {
+                if (err) reject(errors.newError('Deleting failed / Internal Server Error', 500));
+            })
+            delete collection[id];
+            fs.writeFile(file, JSON.stringify(collection), (err) => {
+                if (err) reject(errors.newError('Writing failed / Internal Server Error', 500));
+            });
+            resolve(collection);
+        });
+    });
+    return await promise;
+}
+
+module.exports = { getImages, postImages, putImages, deleteImages };
