@@ -5,8 +5,8 @@ const newError = (message, status) => {
 }
 
 const handleErrors = (err, req, res, next) => {
-    console.error(`Error: ${err.message}, status: ${err.statusCode}`);
     if (!err.statusCode) err.statusCode = 500;
+    console.error(`Error: ${err.message}, status: ${err.statusCode}`);
     res.status(err.statusCode).json(err.message);
 };
 

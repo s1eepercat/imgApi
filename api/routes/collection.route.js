@@ -1,20 +1,18 @@
 const auth = require('./../middleware/authentication');
 const express = require('express');
 const errors = require('./../middleware/errors');
-const data = require('./../data/data');
+const dataRequests = require('../data/data.requests');
 const uploader = require('./../middleware/uploader');
 const router = express.Router();
 
 
 router.get('/', (req, res, next) => {
-    data.getImages('./api/data/collection.json')
-        .catch(err => next(err))
+    dataRequests.getImages('./api/data/collection.json')
         .then(data => res.status(200).json(data));
 })
 
 router.post('/', auth.validateToken, uploader('collection').single('collection_image'), (req, res) => {
-    data.postImages('./api/data/collection.json', req.body.id, `/collection/${req.file.filename}`)
-        .catch(err => next(err))
+    dataRequests.postImages('./api/data/collection.json', req.body.id, `/collection/${req.file.filename}`)
         .then(data => res.status(200).json(data));
 });
 

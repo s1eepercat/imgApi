@@ -4,8 +4,12 @@ const imageRoute = require('./routes/image.route');
 const collectionRoute = require('./routes/collection.route');
 const express = require('express');
 const bodyParser = require('body-parser');
+const fs = require('fs');
 const app = express();
 const port = process.env.PORT || 3000;
+
+!fs.existsSync(__dirname + '/data/collection.json') && fs.writeFile(__dirname + '/data/collection.json', '{}', () => { });
+!fs.existsSync(__dirname + '/data/image.json') && fs.writeFile(__dirname + '/data/image.json', '{}', () => { });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

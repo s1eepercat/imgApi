@@ -1,13 +1,13 @@
 '/api/login': 
-    post:  {username: test, password: test},
+    post:  {username: test, password: test}, ---token
 
 '/api/image':
-    get:  {?id=1} ---path
-    post: x-access-token; {id: 1; path: ''}
-    put: x-access-token; {id: 1, path: ''}
+    get:  {?id=1} ---URL
+    post: x-access-token; {id: ELEMENTREF;} ---collection JSON
+    put: x-access-token; {id: ELEMENTREF;} ---collection JSON
 
 '/api/collection':
-    get  ---array of paths
+    get  ---array of URLS
     post: x-access-token; {id: ELEMENTREF;} ---collection JSON
     put: x-access-token; {id: ELEMENTREF;} ---collection JSON
     delete: x-access-token; {id: ELEMENTREF;} ---collection JSON
