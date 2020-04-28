@@ -12,7 +12,12 @@
     <button onclick="formSubmit()">SEND</button>
 
     <script>
-        let access_token;
+        // function createCookie(name, value) {
+        //     var date = new Date();
+        //     date.setTime(date.getTime() + (3600 * 1000));
+        //     var expires = "; expires=" + date.toGMTString();
+        //     document.cookie = name + "=" + value + expires + "; path=/";
+        // }
 
         const inputs = document.querySelectorAll('input');
 
@@ -21,6 +26,7 @@
                 username: inputs[0].value,
                 password: inputs[1].value
             };
+
             fetch('/api/login', {
                 headers: {
                     'Accept': 'application/json',
@@ -29,9 +35,17 @@
                 method: 'POST',
                 body: JSON.stringify(object)
             })
-                .then(response => response.json()) //SAVE TO TOKEN INTO COOKIE WITH 1 HOUR EXPIRATION
+                .then(data => console.log('cookie created'))
                 .catch(error => console.error('Error:', error))
-                .then(response => console.log(JSON.stringify(response)))
+            // .then(response => response.json()) //SAVE TO TOKEN INTO COOKIE WITH 1 HOUR EXPIRATION
+            // .catch(error => console.error('Error:', error))
+            // .then(data => {
+            //     console.log(`JWT is set to a cookie!`);
+            //     if (data.token) {
+            //         console.log(data.token);
+            //         // createCookie('x-access-token', data.token);
+            //     }
+            // })
         }
     </script>
 

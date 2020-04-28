@@ -1,12 +1,11 @@
 const auth = require('./../middleware/authentication');
 const express = require('express');
-const errors = require('./../middleware/errors');
 const dataRequests = require('../data/data.requests');
 const uploader = require('./../middleware/uploader');
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
-    dataRequests.getImages('./api/data/collection.json')
+    dataRequests.getImages('./api/data/collection.json', req.query.id)
         .then(data => res.status(200).json(data));
 })
 

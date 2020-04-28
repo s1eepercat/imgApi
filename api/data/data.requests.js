@@ -1,11 +1,12 @@
 const fs = require('fs');
 const errors = require('../middleware/errors');
 
-const getImages = async (file, id = null) => {
+const getImages = async (file, id = undefined) => {
     let promise = new Promise((resolve, reject) => {
         fs.readFile(file, (err, data) => {
             if (err) reject(errors.newError('Reading failed / Internal Server Error', 500));
             collection = JSON.parse(data);
+            console.log(id);
             if (id) {
                 resolve(collection[id]);
             } else {
