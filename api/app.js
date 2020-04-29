@@ -9,7 +9,6 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 !fs.existsSync(__dirname + '/data/collection.json') && fs.writeFile(__dirname + '/data/collection.json', '{}', () => { });
-!fs.existsSync(__dirname + '/data/image.json') && fs.writeFile(__dirname + '/data/image.json', '{}', () => { });
 
 app.use(cookieParser());
 app.use(bodyParser.json());

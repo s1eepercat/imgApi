@@ -2,12 +2,12 @@
     post:  {username: test, password: test}, ---token
 
 '/api/image':
-    get:  {?id=1} ---URL
+    get:  
     post: x-access-token; {id: ELEMENTREF;} ---collection JSON
     put: x-access-token; {id: ELEMENTREF;} ---collection JSON
 
 '/api/collection':
-    get                                                 ---array of URLS            <<<<JSON FORMAT>>>>
+    get   {?id=1} ---URL                                ---array of URLS            <<<<JSON FORMAT>>>>
     post: x-access-token; {id: ELEMENTREF; img FILE}    ---json object with URLS    <<<<MULTIFORM DATA>>>>
     put: x-access-token; {id: ELEMENTREF; img FILE}     ---json object with URLS    <<<<MULTIFORM DATA>>>>
     delete: x-access-token; {id: ELEMENTREF;}           ---json object with URLS    <<<<JSON FORMAT>>>>
@@ -15,5 +15,4 @@
 
     //FRONT SHOULD SERVE ONLY UNIQUE IDS!!!
 
-
-    //OLD IMAGES ARE NOT GETTING DELETED, DO IT IN DATE.REQUESTS
+    //MAKE SURE CAN UPLOAD ONLY JPG AND PNG

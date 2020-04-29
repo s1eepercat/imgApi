@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config.json');
 const errors = require('./errors')
 let signature = 'aleksejs_web';
-let jwtExpirySeconds = '3600';
+let jwtExpirySeconds = 3600;
 const adminUsername = 'test';
 const adminPassword = 'test';
 
@@ -31,7 +31,7 @@ const validateToken = (req, res, next) => {
     const token = req.cookies['x-access-token'];
     if (token) {
         try {
-            jwt.verify(token, config.secret, { algorithms: ['HS256'], expiresIn: [jwtExpirySeconds] });
+            jwt.verify(token, config.secret, { algorithms: ['HS256'], expiresIn: jwtExpirySeconds });
             next();
         } catch (error) {
             if (error instanceof jwt.JsonWebTokenError) {

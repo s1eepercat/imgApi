@@ -12,13 +12,6 @@
     <button onclick="formSubmit()">SEND</button>
 
     <script>
-        // function createCookie(name, value) {
-        //     var date = new Date();
-        //     date.setTime(date.getTime() + (3600 * 1000));
-        //     var expires = "; expires=" + date.toGMTString();
-        //     document.cookie = name + "=" + value + expires + "; path=/";
-        // }
-
         const inputs = document.querySelectorAll('input');
 
         function formSubmit() {
@@ -35,17 +28,6 @@
                 method: 'POST',
                 body: JSON.stringify(object)
             })
-                .then(data => console.log('cookie created'))
-                .catch(error => console.error('Error:', error))
-            // .then(response => response.json()) //SAVE TO TOKEN INTO COOKIE WITH 1 HOUR EXPIRATION
-            // .catch(error => console.error('Error:', error))
-            // .then(data => {
-            //     console.log(`JWT is set to a cookie!`);
-            //     if (data.token) {
-            //         console.log(data.token);
-            //         // createCookie('x-access-token', data.token);
-            //     }
-            // })
         }
     </script>
 

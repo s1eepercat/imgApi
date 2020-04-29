@@ -6,9 +6,8 @@ const getImages = async (file, id = undefined) => {
         fs.readFile(file, (err, data) => {
             if (err) reject(errors.newError('Reading failed / Internal Server Error', 500));
             collection = JSON.parse(data);
-            console.log(id);
             if (id) {
-                resolve(collection[id]);
+                resolve({ [id]: collection[id] });
             } else {
                 pathsArray = [];
                 for (let id in collection) {
@@ -43,13 +42,13 @@ const putImages = async (file, id, path) => {
             if (err) reject(errors.newError('Reading failed / Internal Server Error', 500));
             collection = JSON.parse(data);
             const lastPath = collection[id];
-            fs.unlink('./public' + lastPath, (err) => {
-                if (err) reject(errors.newError('Deleting failed / Internal Server Error', 500));
-            })
             collection[id] = path;
             fs.writeFile(file, JSON.stringify(collection), (err) => {
                 if (err) reject(errors.newError('Writing failed / Internal Server Error', 500));
             });
+            fs.unlink('./public' + lastPath, (err) => {
+                if (err) reject(errors.newError('Deleting failed / Internal Server Error', 500));
+            })
             resolve(collection);
         });
     });
@@ -62,13 +61,13 @@ const deleteImages = async (file, id) => {
             if (err) reject(errors.newError('Reading failed / Internal Server Error', 500));
             collection = JSON.parse(data);
             const lastPath = collection[id];
-            fs.unlink('./public' + lastPath, (err) => {
-                if (err) reject(errors.newError('Deleting failed / Internal Server Error', 500));
-            })
             delete collection[id];
             fs.writeFile(file, JSON.stringify(collection), (err) => {
                 if (err) reject(errors.newError('Writing failed / Internal Server Error', 500));
             });
+            fs.unlink('./public' + lastPath, (err) => {
+                if (err) reject(errors.newError('Deleting failed / Internal Server Error', 500));
+            })
             resolve(collection);
         });
     });
