@@ -9,17 +9,17 @@ router.get('/', (req, res, next) => {
         .then(data => res.status(200).json(data));
 })
 
-router.post('/', uploader('collection').single('collection_image'), (req, res) => {
+router.post('/', auth.validateToken, uploader('collection').single('collection_image'), (req, res) => {
     dataRequests.postImages('./api/data/collection.json', req.body.id, `/collection/${req.file.filename}`)
         .then(data => res.status(200).json(data));
 });
 
-router.put('/', uploader('collection').single('collection_image'), (req, res) => {
+router.put('/', auth.validateToken, uploader('collection').single('collection_image'), (req, res) => {
     dataRequests.putImages('./api/data/collection.json', req.body.id, `/collection/${req.file.filename}`)
         .then(data => res.status(200).json(data));
 });
 
-router.delete('/', (req, res) => {
+router.delete('/', auth.validateToken, (req, res) => {
     dataRequests.deleteImages('./api/data/collection.json', req.body.id)
         .then(data => res.status(200).json(data));
 });
