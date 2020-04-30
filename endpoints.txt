@@ -12,8 +12,4 @@
     put: x-access-token; {id: ELEMENTREF; img FILE}     ---json object with URLS    <<<<MULTIFORM DATA>>>>
     delete: x-access-token; {id: ELEMENTREF;}           ---json object with URLS    <<<<JSON FORMAT>>>>
 
-
     //FRONT SHOULD SERVE ONLY UNIQUE IDS!!!
-
-    //MAKE SURE CAN UPLOAD ONLY JPG AND PNG
-    //OPTIMIZE FUNCTIONS

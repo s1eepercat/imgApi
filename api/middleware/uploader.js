@@ -1,5 +1,6 @@
 const path = require('path');
 const multer = require('multer');
+const errors = require('./errors');
 
 const storage = (dir) => {
     return multer.diskStorage({
@@ -12,6 +13,16 @@ const storage = (dir) => {
     })
 }
 
-const uploader = (dir) => multer({ storage: storage(dir) })
+const uploader = (dir) => multer({
+    storage: storage(dir),
+    fileFilter: (req, file, cb) => {
+        if (file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg') {
+            cb(null, true);
+        } else {
+            cb(null, false);
+            return cb(errors.newError('Only png, jpg and jpeg formats are allowed. / Bad Request', 400));
+        }
+    }
+})
 
 module.exports = uploader;
