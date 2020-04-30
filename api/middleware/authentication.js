@@ -6,16 +6,6 @@ let jwtExpirySeconds = 3600;
 const adminUsername = 'test';
 const adminPassword = 'test';
 
-const authenticate = async ({ username, password }) => {
-    if (username === adminUsername && password === adminPassword) {
-        const token = jwt.sign({ signature }, config.secret, {
-            algorithm: 'HS256',
-            expiresIn: jwtExpirySeconds
-        });
-        return { token }
-    }
-}
-
 const login = (req, res, next) => {
     authenticate(req.body)
         .then(token => {
@@ -25,6 +15,16 @@ const login = (req, res, next) => {
                 next(errors.newError('Username or password is incorrect / Bad Request', 400))
             }
         })
+}
+
+const authenticate = async ({ username, password }) => {
+    if (username === adminUsername && password === adminPassword) {
+        const token = jwt.sign({ signature }, config.secret, {
+            algorithm: 'HS256',
+            expiresIn: jwtExpirySeconds
+        });
+        return { token }
+    }
 }
 
 const validateToken = (req, res, next) => {

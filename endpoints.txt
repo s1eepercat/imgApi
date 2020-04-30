@@ -2,14 +2,14 @@
     post:  {username: test, password: test}, ---token
 
 '/api/image':
-    get:  
-    post: x-access-token; {id: ELEMENTREF;} ---collection JSON
-    put: x-access-token; {id: ELEMENTREF;} ---collection JSON
+    get   {?id=1}                                       ---json object with URLS    <<<<JSON FORMAT>>>>
+    post: x-access-token; {id: ELEMENTREF; img FILE}    ---json object with URLS    <<<<MULTIFORM DATA>>>>
+    put: x-access-token; {id: ELEMENTREF; img FILE}     ---json object with URLS    <<<<MULTIFORM DATA>>>>
 
 '/api/collection':
-    get   {?id=1} ---URL                                ---array of URLS            <<<<JSON FORMAT>>>>
+    get   {?id=1}                                       ---json object with URLS    <<<<JSON FORMAT>>>>
     post: x-access-token; {id: ELEMENTREF; img FILE}    ---json object with URLS    <<<<MULTIFORM DATA>>>>
     put: x-access-token; {id: ELEMENTREF; img FILE}     ---json object with URLS    <<<<MULTIFORM DATA>>>>
     delete: x-access-token; {id: ELEMENTREF;}           ---json object with URLS    <<<<JSON FORMAT>>>>
 
-    //FRONT SHOULD SERVE ONLY UNIQUE IDS!!!
+    //POST request should serve only unique ids
