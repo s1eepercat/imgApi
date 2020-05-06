@@ -10,6 +10,8 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 dm.createDataFiles(__dirname);
+dm.cleanImages(__dirname, 'collection');
+dm.cleanImages(__dirname, 'image');
 
 app.use(cookieParser());
 app.use(bodyParser.json());
